@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: autosub-video-studio
+    runtime: docker
+    plan: starter
+    autoDeploy: true
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: 10000
