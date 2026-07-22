@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AutoSub Video Studio</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div>
+        <span class="badge">AUTO SUB • REMIX VIDEO</span>
+        <h1>Biến video gốc thành video mới trong vài bước</h1>
+        <p>Tạo phụ đề tiếng Việt, cắt video, đổi tỷ lệ TikTok/Reels, lật hình, đổi tốc độ, thêm nhạc và watermark.</p>
+      </div>
+    </section>
+
+    <form id="studioForm" class="card">
+      <div class="grid two">
+        <label class="upload-box">
+          <span>1. Chọn video</span>
+          <input id="video" name="video" type="file" accept="video/*" required />
+          <small id="videoName">MP4, MOV, MKV, AVI, WEBM</small>
+        </label>
+        <label class="upload-box">
+          <span>2. Thêm nhạc nền (không bắt buộc)</span>
+          <input id="music" name="music" type="file" accept="audio/*" />
+          <small id="musicName">MP3, WAV, M4A, AAC</small>
+        </label>
+      </div>
+
+      <div class="section-title">Phụ đề tự động</div>
+      <div class="grid three">
+        <label class="switch-row"><input type="checkbox" name="add_subtitles" value="true" checked /><span>Tạo và ghim phụ đề</span></label>
+        <label>Ngôn ngữ
+          <select name="language"><option value="vi">Tiếng Việt</option><option value="en">English</option><option value="">Tự nhận diện</option></select>
+        </label>
+        <label>Kích thước chữ
+          <input name="subtitle_size" type="number" value="18" min="12" max="40" />
+        </label>
+      </div>
+
+      <div class="section-title">Xào nấu video</div>
+      <div class="grid three">
+        <label>Tỷ lệ khung hình
+          <select name="ratio"><option value="original">Giữ nguyên</option><option value="9:16">9:16 TikTok/Reels</option><option value="1:1">1:1 Vuông</option><option value="16:9">16:9 YouTube</option></select>
+        </label>
+        <label>Tốc độ
+          <select name="speed"><option value="0.75">0.75x</option><option value="1" selected>1.0x</option><option value="1.1">1.1x</option><option value="1.25">1.25x</option><option value="1.5">1.5x</option></select>
+        </label>
+        <label>Watermark
+          <input name="watermark" type="text" placeholder="Ví dụ: Review Ẩn Danh" />
+        </label>
+        <label>Bắt đầu từ giây
+          <input name="start" type="number" min="0" step="0.1" value="0" />
+        </label>
+        <label>Kết thúc ở giây
+          <input name="end" type="number" min="0" step="0.1" placeholder="Để trống = hết video" />
+        </label>
+        <div class="check-group">
+          <label class="switch-row"><input type="checkbox" name="flip" value="true" /><span>Lật ngang video</span></label>
+          <label class="switch-row"><input type="checkbox" name="mute_original" value="true" /><span>Tắt tiếng gốc</span></label>
+        </div>
+      </div>
+
+      <input type="hidden" name="model_size" value="small" />
+      <button id="submitBtn" type="submit">Tạo video mới</button>
+      <div id="progress" class="progress hidden"><div class="spinner"></div><div><strong>Đang xử lý…</strong><small>Video dài hoặc lần đầu tải model có thể chậm.</small></div></div>
+      <div id="result" class="result hidden"></div>
+    </form>
+
+    <p class="note">Chỉ sử dụng video, âm thanh và hình ảnh mà bạn có quyền chỉnh sửa hoặc đăng lại.</p>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>
